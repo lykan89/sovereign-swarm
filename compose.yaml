@@ -1,0 +1,37 @@
+services:
+  swarm:
+    # 1. Build using the 'Dual-Python' Dockerfile in the current directory
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    
+    # 2. Container Name for easy management in Docker Desktop
+    container_name: sovereign-swarm-engine
+
+    # 3. Environment Variables (Your API Keys)
+    env_file: .env
+
+    # 4. Persistence (The "No-Compromise" Volume)
+    # This maps your local 'results' folder to the container's output folder.
+    # Even if you delete the container, your bug reports stay on your Ryzen 5 SSD.
+    volumes:
+      - ./results:/app/results
+    
+    # 5. Interactive Mode
+    # These two lines allow you to interact with the Python script (input targets)
+    # and see the beautiful 'Rich' terminal output in real-time.
+    tty: true
+    stdin_open: true
+
+    # 6. Resource Management (Optimized for 16GB RAM)
+    # This prevents the swarm from accidentally eating all your RAM if a tool hangs.
+    deploy:
+      resources:
+        limits:
+          memory: 4gb
+        reservations:
+          memory: 1gb
+
+    # 7. Restart Policy
+    # If the container crashes due to a network error, Docker will restart it automatically.
+    restart: on-failure
