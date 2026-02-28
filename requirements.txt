@@ -1,0 +1,19 @@
+# --- Core Orchestration ---
+langgraph>=1.0.7
+langchain>=1.2.10
+langchain-deepseek>=0.1.5
+langchain-openai>=0.2.13  # For deepseek-reasoner compatibility
+
+# --- Networking & API ---
+httpx[http2]>=0.28.1       # High-performance async requests
+python-dotenv>=1.2.1      # Environment variable management
+pydantic>=2.10.5          # Data validation for agent states
+
+# --- Utils ---
+loguru>=0.7.2             # Advanced logging for swarm monitoring
+rich>=13.9.4              # Pretty terminal output for your local machine
+
+# --- Intelligence APIs ---
+shodan>=1.31.0
+censys>=2.2.19
+greynoise>=3.0.1
